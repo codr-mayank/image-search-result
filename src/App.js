@@ -1,5 +1,5 @@
 import './App.css';
-import ImageResults from './Pages/ImageResults';
+import ImageResults from './Pages/ImageResults/ImageResults';
 
 function App() {
   return (

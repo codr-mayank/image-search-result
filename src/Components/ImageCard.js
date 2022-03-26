@@ -1,10 +1,17 @@
 import React from "react";
+import './ImageCard.scss';
 
 const ImageCard = ({ image }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <img src={image.download_url} style={{ width: 'fit-content', height: '200px' }} />
-      {image.author}
+    <div className='imageCard'>
+      <img
+        className='imageStyle'
+        src={image.download_url}
+      />
+      <div className='imageDetail'>
+        <span>{image.author}</span>
+        <span>{image.url}</span>
+      </div>
     </div>
   );
 };
