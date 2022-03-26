@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ImageGallery from '../../Components/ImageGallery';
+import NavButtons from '../../Components/NavButtons';
 import { getImageDetailsList } from '../../Services/imageResultsApis';
 import './ImageResults.scss';
 
@@ -14,24 +15,31 @@ const ImageResults = () => {
 
   useEffect(() => {
     getImages();
-  }, []);
-
-  const handlePreviousClick = () => {
-    setPageNumber(pageNumber - 1);
-    getImages();
-  };
+  }, [pageNumber]);
 
   const handleNextClick = () => {
     setPageNumber(pageNumber + 1);
-    getImages();
+  };
+
+  const handlePreviousClick = () => {
+    setPageNumber(pageNumber - 1);
   };
 
   return (
     <div className='container'>
-      <button onClick={handlePreviousClick} disabled={pageNumber <= 1}>Previous</button>
-      <button onClick={handleNextClick} disabled={pageNumber >= 10}>Next</button>
+      <h3 className='header'>Image Results</h3>
+      <NavButtons
+        handleNextClick={handleNextClick}
+        handlePreviousClick={handlePreviousClick}
+        pageNumber={pageNumber}
+      />
       <ImageGallery
         imageList={imageDetailsList}
+      />
+      <NavButtons
+        handleNextClick={handleNextClick}
+        handlePreviousClick={handlePreviousClick}
+        pageNumber={pageNumber}
       />
     </div>
   );
