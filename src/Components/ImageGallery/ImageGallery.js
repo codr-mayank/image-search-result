@@ -3,7 +3,14 @@ import ImageCard from "../ImageCard/ImageCard";
 import './ImageGallery.scss';
 import ImageSideCard from "../ImageSideCard/ImageSideCard";
 
-const ImageGallery = ({ imageList, handleImageClick, selectedImage, removeSelectedImage, handleSideCardNav, currentIndex }) => {
+const ImageGallery = ({
+  imageList,
+  handleImageClick,
+  selectedImage,
+  removeSelectedImage,
+  handleSideCardNav,
+  currentIndex
+}) => {
   return (
     <div className='galleryContainer'>
       <div className={`gallery ${selectedImage ? 'smallWidth' : ''}`}>

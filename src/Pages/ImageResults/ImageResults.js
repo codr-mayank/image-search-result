@@ -10,6 +10,10 @@ const ImageResults = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
 
+  /**
+   * getImages: To get (fetch) image list from backend for provided page number and set it to component's state.
+   * 
+   */
   const getImages = async () => {
     const response = await getImageDetailsList({ pageNumber });
     setImageDetailsList(response);
@@ -27,6 +31,11 @@ const ImageResults = () => {
     }
   }, [selectedImage]);
 
+  /**
+   * handlePageNav: Function to set page number using navigation buttons
+   * 
+   * @param {*} isIncrement 
+   */
   const handlePageNav = isIncrement => {
     if (isIncrement) {
       setPageNumber(pageNumber + 1);
@@ -47,6 +56,11 @@ const ImageResults = () => {
     setSelectedImage(null);
   }
 
+  /**
+   * handleSideCardNav: Function to set currenntIndex for side image card (with image details)
+   * 
+   * @param {*} isIncrement 
+   */
   const handleSideCardNav = isIncrement => {
     if (isIncrement) {
       if (currentIndex < (imageDetailsList || []).length - 1) {

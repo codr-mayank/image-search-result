@@ -25,6 +25,9 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
     }
   });
 
+  /**
+   * handleImageDetailsClick: Function to open image using image url in new tab
+   */
   const handleImageDetailsClick = () => {
     window.open(image.url);
   }

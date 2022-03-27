@@ -2,7 +2,11 @@ import React from "react";
 import { Icon } from '@iconify/react';
 import './NavButtons.scss';
 
-const NavButtons = ({ handlePageNav, pageNumber, setSpecificPageNumber }) => {
+const NavButtons = ({
+  handlePageNav,
+  pageNumber,
+  setSpecificPageNumber
+}) => {
   return (
     <div className='buttonDiv'>
       <div

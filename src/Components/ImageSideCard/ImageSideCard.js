@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Icon } from '@iconify/react';
 import './ImageSideCard.scss';
 
-const ImageSideCard = ({ image, imageList, removeSelectedImage, handleSideCardNav, currentIndex }) => {
+const ImageSideCard = ({
+  image,
+  imageList,
+  removeSelectedImage,
+  handleSideCardNav,
+  currentIndex
+}) => {
   const [dimensions, setDimensions] = useState('');
   const [showDimensions, setShowDimensions] = useState(false);
 
@@ -10,6 +16,9 @@ const ImageSideCard = ({ image, imageList, removeSelectedImage, handleSideCardNa
     setDimensions(image.width + ' x ' + image.height);
   }, [image]);
 
+  /**
+   * handleImageDetailsClick: Function to open image using image url in new tab
+   */
   const handleImageOnClick = () => {
     window.open(image.url);
   }
