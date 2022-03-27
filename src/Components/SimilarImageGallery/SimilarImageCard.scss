@@ -1,0 +1,33 @@
+#imageCard {
+  display: flex;
+  flex-direction: column;
+  margin: 0.2em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+
+  .imageStyle {
+    width: fit-content;
+    height: 100px;
+    padding: 0.3em;
+    border-radius: 0.3em;
+    cursor: pointer;
+  }
+
+  .imageDetail {
+    display: flex;
+    flex-direction: column;
+    margin: 0.3em 0.5em;
+    font-size: 0.8em;
+    cursor: pointer;
+
+    .noTextOverflow {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+  }
+  .imageDetail:hover {
+    text-decoration: underline;
+  }
+}

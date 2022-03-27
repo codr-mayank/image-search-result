@@ -2,10 +2,10 @@
   width: 34%;
   border: 1px solid;
   position: fixed;
-  right: 1em;
+  right: 0;
   padding: 0.5em 0.25em;
   height: fit-content;
-  border-radius: 0.5em;
+  max-height: 85vh;
   color: #fff;
   background-color: #262626;
   overflow-y: auto;
@@ -69,7 +69,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1em 1.4em;
+    margin: 0.5em 1.4em;
     
     .imageDetail {
       display: flex;
@@ -100,6 +100,18 @@
       border-radius: 2em;
       background: #8ab4f8;
       cursor: pointer;
+    }
+  }
+
+  .relatedImagesSection {
+    padding-top: 1em;
+    border-top: 1px solid #666;
+
+    .title {
+      margin: 1em;
+      font-size: 0.9em;
+      font-weight: 600;
+      margin-left: 1.4em;
     }
   }
 }
