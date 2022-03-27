@@ -36,11 +36,11 @@ const ImageResults = () => {
       <ImageGallery
         imageList={imageDetailsList}
       />
-      <NavButtons
+      {!!(imageDetailsList || []).length && <NavButtons
         handleNextClick={handleNextClick}
         handlePreviousClick={handlePreviousClick}
         pageNumber={pageNumber}
-      />
+      />}
     </div>
   );
 };

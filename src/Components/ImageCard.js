@@ -34,10 +34,12 @@ const ImageCard = ({ image, handleImageClick }) => {
         className='imageStyle'
         src={img}
       />
-      <div className='imageDetail'>
-        <span className="noTextOverflow">{image.author}</span>
-        <span className="noTextOverflow">{image.url}</span>
+      <a className='imageDetailLink' href={image.url} target='_blank'>
+        <div className='imageDetail'>
+          <span className="noTextOverflow">{image.author}</span>
+          <span className="noTextOverflow">{image.url}</span>
       </div>
+      </a>
     </div>
   );
 };
