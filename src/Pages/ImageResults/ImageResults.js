@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ImageGallery from '../../Components/ImageGallery';
-import NavButtons from '../../Components/NavButtons';
+import ImageGallery from '../../Components/ImageGallery/ImageGallery';
+import NavButtons from '../../Components/NavButtons/NavButtons';
 import { getImageDetailsList } from '../../Services/imageResultsApis';
 import './ImageResults.scss';
 
@@ -35,6 +35,10 @@ const ImageResults = () => {
     }
   };
 
+  const setSpecificPageNumber = page => {
+    setPageNumber(page);
+  }
+
   const handleImageClick = image => {
     setSelectedImage(image);
   }
@@ -62,6 +66,7 @@ const ImageResults = () => {
         <NavButtons
           handlePageNav={handlePageNav}
           pageNumber={pageNumber}
+          setSpecificPageNumber={setSpecificPageNumber}
         />
       </div>
       <div className='container'>

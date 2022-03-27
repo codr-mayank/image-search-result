@@ -1,0 +1,42 @@
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  
+  .buttonStyle {
+    border: none;
+    background: #242424;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    font-size: 1.1em;
+    color: #fff;
+    border-radius: 5em;
+    cursor: pointer;
+
+    .icon {
+      margin-top: 0.25em;
+    }
+  }
+
+  .buttonStyle:disabled {
+    opacity: 0.6;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .secondaryButton {
+    margin: auto 0.5em;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .text {
+    font-style: italic;
+  }
+
+  .secondaryButton:hover {
+    text-decoration: underline;
+  }
+}

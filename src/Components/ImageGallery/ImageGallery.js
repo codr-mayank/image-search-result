@@ -1,7 +1,7 @@
 import React from "react";
-import ImageCard from "./ImageCard";
+import ImageCard from "../ImageCard/ImageCard";
 import './ImageGallery.scss';
-import ImageSideCard from "./ImageSideCard";
+import ImageSideCard from "../ImageSideCard/ImageSideCard";
 
 const ImageGallery = ({ imageList, handleImageClick, selectedImage, removeSelectedImage, handleSideCardNav, currentIndex }) => {
   return (

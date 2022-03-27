@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import apiEndPoints from "../Constants/apiEndPoints";
-import baseUrl from "../Constants/baseUrls";
+import apiEndPoints from "../../Constants/apiEndPoints";
+import baseUrl from "../../Constants/baseUrls";
 import './ImageCard.scss';
 
 const ImageCard = ({ image, handleImageClick, selectedImage }) => {
@@ -51,8 +51,8 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
         className='imageDetail'
         onClick={handleImageDetailsClick}
       >
-          <span className="noTextOverflow">{image.author}</span>
-          <span className="noTextOverflow">{image.url}</span>
+        <span className="noTextOverflow">{image.author}</span>
+        <span className="noTextOverflow">{image.url}</span>
       </div>
     </div>
   );
