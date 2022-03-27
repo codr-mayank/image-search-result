@@ -15,29 +15,27 @@
 
   .imageStyle:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   }
 
-  .imageDetailLink {
-    color: #000;
-    text-decoration: none;
+  .imageDetail {
+    display: flex;
+    flex-direction: column;
+    margin: 0.3em 0.5em;
+    font-size: 0.8em;
+    cursor: pointer;
 
-    .imageDetail {
-      display: flex;
-      flex-direction: column;
-      margin: 0.3em 0.5em;
-      font-size: 0.8em;
-      cursor: pointer;
-
-      .noTextOverflow {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-    }
-
-    .imageDetail:hover {
-      text-decoration: underline;
+    .noTextOverflow {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
+
+  .imageDetail:hover {
+    text-decoration: underline;
+  }
+}
+
+.selected {
+  border: 1px solid blue;
 }

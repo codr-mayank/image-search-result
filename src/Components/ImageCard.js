@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import apiEndPoints from "../Constants/apiEndPoints";
 import baseUrl from "../Constants/baseUrls";
-import { getImageData } from "../Services/imageResultsApis";
 import './ImageCard.scss';
 
-const ImageCard = ({ image, handleImageClick }) => {
+const ImageCard = ({ image, handleImageClick, selectedImage }) => {
   const [img, setImg] = useState();
+  const [isThisImageSelected, setIsThisImageSelected] = useState(false);
   let imageUrl = `${baseUrl.picsumPhotos}${apiEndPoints.getImage}/${image.id}/${parseInt(image.width / 10)}/${parseInt(image.height / 10)}`
 
   const fetchImage = async () => {
@@ -19,14 +19,27 @@ const ImageCard = ({ image, handleImageClick }) => {
     fetchImage();
   }, []);
 
+  useEffect(() => {
+    if (selectedImage) {
+      if (selectedImage.id === image.id) {
+        setIsThisImageSelected(true);
+      } else {
+        setIsThisImageSelected(false);
+      }
+    } else {
+      setIsThisImageSelected(false);
+    }
+  });
+
+  const handleImageDetailsClick = () => {
+    window.open(image.url);
+  }
+
   return (
     <div
-      className='imageCard'
-      // style={{ maxWidth: (225 > image.width / 10 ? (image.width / 10) + 5 : 225) }}
-      // style={{ maxWidth: (image.width / image.height) * 100 }}
+      className={`imageCard ${isThisImageSelected ? 'selected' : ''}`}
       style={{
         maxWidth: (image.width * 154) / image.height,
-        // minWidth: (image.width * 154) / image.height
       }}
     >
       <img
@@ -34,12 +47,10 @@ const ImageCard = ({ image, handleImageClick }) => {
         className='imageStyle'
         onClick={() => handleImageClick(image)}
       />
-      <a className='imageDetailLink' href={image.url} target='_blank'>
-        <div className='imageDetail'>
+      <div className='imageDetail' onClick={handleImageDetailsClick}>
           <span className="noTextOverflow">{image.author}</span>
           <span className="noTextOverflow">{image.url}</span>
       </div>
-      </a>
     </div>
   );
 };

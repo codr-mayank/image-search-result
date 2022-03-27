@@ -8,6 +8,7 @@ const ImageResults = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [imageDetailsList, setImageDetailsList] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   const getImages = async () => {
     const response = await getImageDetailsList({ pageNumber });
@@ -19,16 +20,39 @@ const ImageResults = () => {
     setSelectedImage(null);
   }, [pageNumber]);
 
-  const handleNextClick = () => {
-    setPageNumber(pageNumber + 1);
-  };
+  useEffect(() => {
+    if (selectedImage && selectedImage.id) {
+      let index = (imageDetailsList || []).findIndex(image => image.id === selectedImage.id);
+      setCurrentIndex(index);
+    }
+  }, [selectedImage]);
 
-  const handlePreviousClick = () => {
-    setPageNumber(pageNumber - 1);
+  const handlePageNav = isIncrement => {
+    if (isIncrement) {
+      setPageNumber(pageNumber + 1);
+    } else {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const handleImageClick = image => {
     setSelectedImage(image);
+  }
+
+  const removeSelectedImage = () => {
+    setSelectedImage(null);
+  }
+
+  const handleSideCardNav = isIncrement => {
+    if (isIncrement) {
+      if (currentIndex < 99) {
+        setSelectedImage(imageDetailsList[currentIndex + 1]);
+      }
+    } else {
+      if (currentIndex > 0) {
+        setSelectedImage(imageDetailsList[currentIndex - 1]);
+      }
+    }
   }
 
   return (
@@ -36,8 +60,7 @@ const ImageResults = () => {
       <div className='topBar'>
         <h2 className='header'>Image Results</h2>
         <NavButtons
-          handleNextClick={handleNextClick}
-          handlePreviousClick={handlePreviousClick}
+          handlePageNav={handlePageNav}
           pageNumber={pageNumber}
         />
       </div>
@@ -46,14 +69,10 @@ const ImageResults = () => {
           imageList={imageDetailsList}
           handleImageClick={handleImageClick}
           selectedImage={selectedImage}
+          removeSelectedImage={removeSelectedImage}
+          handleSideCardNav={handleSideCardNav}
+          currentIndex={currentIndex}
         />
-        {!!(imageDetailsList || []).length && (
-          <NavButtons
-            handleNextClick={handleNextClick}
-            handlePreviousClick={handlePreviousClick}
-            pageNumber={pageNumber}
-          />
-        )}
       </div>
     </div>
   );

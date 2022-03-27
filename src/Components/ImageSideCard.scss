@@ -3,5 +3,98 @@
   border: 1px solid;
   position: fixed;
   right: 1em;
+  padding: 0.5em 0.25em;
   height: fit-content;
+  border-radius: 0.5em;
+  color: #fff;
+  background-color: #262626;
+  overflow-y: auto;
+
+  .actionButtonsDiv {
+    display: flex;
+    margin: 0 0.25em;
+
+    .actionButton {
+      background: rgb(66, 66, 66);
+      color: #fff;
+      font-size: 1.4em;
+      border-radius: 50%;
+      padding: 0.25em 0.5em;
+      margin: auto 0.5em;
+      border: none;
+      cursor: pointer;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    }
+
+    .disabled {
+      color: #c6c6c6;
+      opacity: 0.6;
+    }
+  }
+
+  .space {
+    justify-content: space-between;
+  }
+
+  .largeImageDiv {
+    margin: 0.25em;
+    padding: 0.25em 1em;
+    
+    .largeImage {
+      width: fill;
+      cursor: pointer;
+    }
+  }
+
+  .largePadding {
+    padding: 1em 10em;
+  }
+
+  .dimensions {
+    margin: -1em 2em;
+    font-size: 0.7em;
+    position: absolute;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 1.4em;
+    
+    .imageDetail {
+      display: flex;
+      flex-direction: column;
+      margin: 0.3em 0;
+      font-size: 0.8em;
+      cursor: pointer;
+
+      .heading {
+        font-weight: 600;
+        font-size: 1.1em;
+      }
+
+      .smallText {
+        font-size: 0.9em;
+      }
+
+      .noTextOverflow {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .visit {
+      padding: 0.75em 1.25em;
+      border: none;
+      border-radius: 2em;
+      background: #8ab4f8;
+      cursor: pointer;
+    }
+  }
 }

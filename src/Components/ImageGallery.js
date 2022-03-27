@@ -3,7 +3,7 @@ import ImageCard from "./ImageCard";
 import './ImageGallery.scss';
 import ImageSideCard from "./ImageSideCard";
 
-const ImageGallery = ({ imageList, handleImageClick, selectedImage }) => {
+const ImageGallery = ({ imageList, handleImageClick, selectedImage, removeSelectedImage, handleSideCardNav, currentIndex }) => {
   return (
     <div className='galleryContainer'>
       <div className={`gallery ${selectedImage ? 'smallWidth' : ''}`}>
@@ -12,10 +12,18 @@ const ImageGallery = ({ imageList, handleImageClick, selectedImage }) => {
             key={image.id}
             image={image}
             handleImageClick={handleImageClick}
+            selectedImage={selectedImage}
           />
         ))}
       </div>
-      {selectedImage && <ImageSideCard />}
+      {selectedImage && (
+        <ImageSideCard
+          image={selectedImage}
+          removeSelectedImage={removeSelectedImage}
+          handleSideCardNav={handleSideCardNav}
+          currentIndex={currentIndex}
+        />
+      )}
     </div>
   );
 }
