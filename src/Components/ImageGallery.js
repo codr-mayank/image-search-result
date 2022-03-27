@@ -19,6 +19,7 @@ const ImageGallery = ({ imageList, handleImageClick, selectedImage, removeSelect
       {selectedImage && (
         <ImageSideCard
           image={selectedImage}
+          imageList={imageList}
           removeSelectedImage={removeSelectedImage}
           handleSideCardNav={handleSideCardNav}
           currentIndex={currentIndex}

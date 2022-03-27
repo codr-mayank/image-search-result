@@ -45,7 +45,7 @@ const ImageResults = () => {
 
   const handleSideCardNav = isIncrement => {
     if (isIncrement) {
-      if (currentIndex < 99) {
+      if (currentIndex < (imageDetailsList || []).length - 1) {
         setSelectedImage(imageDetailsList[currentIndex + 1]);
       }
     } else {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Icon } from '@iconify/react';
 import './ImageSideCard.scss';
 
-const ImageSideCard = ({ image, removeSelectedImage, handleSideCardNav, currentIndex }) => {
+const ImageSideCard = ({ image, imageList, removeSelectedImage, handleSideCardNav, currentIndex }) => {
   const [dimensions, setDimensions] = useState('');
   const [showDimensions, setShowDimensions] = useState(false);
 
@@ -21,11 +22,28 @@ const ImageSideCard = ({ image, removeSelectedImage, handleSideCardNav, currentI
     <div className='sideCardContainer'>
       <div className='actionButtonsDiv space'>
         <div className='actionButtonsDiv'>
-          <button className='actionButton' onClick={removeSelectedImage}>x</button>
+          <button
+            className='actionButton'
+            onClick={removeSelectedImage}
+          >
+            <Icon className='icon' icon="akar-icons:cross" />
+          </button>
         </div>
         <div className='actionButtonsDiv'>
-          <button className={`actionButton ${currentIndex < 1 ? 'disabled' : ''}`} onClick={() => handleSideCardNav(false)} disabled={currentIndex < 1}>{'<'}</button>
-          <button className={`actionButton ${currentIndex > 98 ? 'disabled' : ''}`} onClick={() => handleSideCardNav(true)} disabled={currentIndex > 98}>{'>'}</button>
+          <button
+            className={`actionButton ${currentIndex < 1 ? 'disabled' : ''}`}
+            onClick={() => handleSideCardNav(false)}
+            disabled={currentIndex < 1}
+          >
+            <Icon className='icon' icon="akar-icons:chevron-left" />
+          </button>
+          <button
+            className={`actionButton ${currentIndex >= imageList.length - 1 ? 'disabled' : ''}`}
+            onClick={() => handleSideCardNav(true)}
+            disabled={currentIndex >= imageList.length - 1}
+          >
+            <Icon className='icon' icon="akar-icons:chevron-right" />
+          </button>
         </div>
       </div>
       <div

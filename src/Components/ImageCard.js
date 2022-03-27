@@ -4,20 +4,14 @@ import baseUrl from "../Constants/baseUrls";
 import './ImageCard.scss';
 
 const ImageCard = ({ image, handleImageClick, selectedImage }) => {
-  const [img, setImg] = useState();
+  const [imageUrl, setImageUrl] = useState();
   const [isThisImageSelected, setIsThisImageSelected] = useState(false);
-  let imageUrl = `${baseUrl.picsumPhotos}${apiEndPoints.getImage}/${image.id}/${parseInt(image.width / 10)}/${parseInt(image.height / 10)}`
-
-  const fetchImage = async () => {
-    const res = await fetch(imageUrl);
-    const imageBlob = await res.blob();
-    const imageObjectURL = URL.createObjectURL(imageBlob);
-    setImg(imageObjectURL);
-  };
+  const [imageHovered, setImageHovered] = useState(false);
 
   useEffect(() => {
-    fetchImage();
-  }, []);
+    const imageUrl = `${baseUrl.picsumPhotos}${apiEndPoints.getImage}/${image.id}/${parseInt(image.width / 10)}/${parseInt(image.height / 10)}`
+    setImageUrl(imageUrl);
+  }, [image]);
 
   useEffect(() => {
     if (selectedImage) {
@@ -35,19 +29,28 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
     window.open(image.url);
   }
 
+  const handleImageHover = value => {
+    setImageHovered(value);
+  }
+
   return (
     <div
       className={`imageCard ${isThisImageSelected ? 'selected' : ''}`}
       style={{
-        maxWidth: (image.width * 154) / image.height,
+        maxWidth: (image.width * 155) / image.height,
       }}
+      onMouseOver={() => handleImageHover(true)}
+      onMouseOut={() => handleImageHover(false)}
     >
       <img
-        src={img}
-        className='imageStyle'
+        src={imageUrl}
+        className={`imageStyle ${imageHovered ? 'hover' : ''}`}
         onClick={() => handleImageClick(image)}
       />
-      <div className='imageDetail' onClick={handleImageDetailsClick}>
+      <div
+        className='imageDetail'
+        onClick={handleImageDetailsClick}
+      >
           <span className="noTextOverflow">{image.author}</span>
           <span className="noTextOverflow">{image.url}</span>
       </div>
