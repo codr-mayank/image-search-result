@@ -1,7 +1,7 @@
 import React from "react";
 import ImageCard from "../ImageCard/ImageCard";
-import './ImageGallery.scss';
 import ImageSideCard from "../ImageSideCard/ImageSideCard";
+import './ImageGallery.scss';
 
 const ImageGallery = ({
   imageList,
@@ -30,10 +30,11 @@ const ImageGallery = ({
           removeSelectedImage={removeSelectedImage}
           handleSideCardNav={handleSideCardNav}
           currentIndex={currentIndex}
+          handleImageClick={handleImageClick}
         />
       )}
     </div>
   );
-}
+};
 
 export default ImageGallery;

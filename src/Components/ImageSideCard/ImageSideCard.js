@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Icon } from '@iconify/react';
+import SimilarImageGallery from "../SimilarImageGallery/SimilarImageGallery";
+import baseUrl from "../../Constants/baseUrls";
+import apiEndPoints from "../../Constants/apiEndPoints";
+import { getImageDetailsList } from '../../Services/imageResultsApis';
 import './ImageSideCard.scss';
 
 const ImageSideCard = ({
@@ -9,12 +13,59 @@ const ImageSideCard = ({
   handleSideCardNav,
   currentIndex
 }) => {
-  const [dimensions, setDimensions] = useState('');
+  const [isPortrait, setIsPortrait] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+  const [img, setImg] = useState(null);
+  const [dimensionString, setDimensionString] = useState('');
   const [showDimensions, setShowDimensions] = useState(false);
+  const [similarList, setSimilarList] = useState([]);
+
+  const imageUrl = `${baseUrl.picsumPhotos}${apiEndPoints.getImage}/${image.id}/${parseInt(image.width / 10)}/${parseInt(image.height / 10)}`
+
+  const abortController = useRef();
+  let signal;
+
+  const fetchImage = async (url, largeImage = false, abortSignal = null) => {
+    try {
+      const res = await fetch(url, { signal: abortSignal });
+      const imageBlob = await (res || {}).blob();
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+      if (largeImage) {
+        setImg(imageObjectURL);
+      } else {
+        setImg(null);
+        setThumbnail(imageObjectURL);
+      }
+    } catch (error) {
+      // error handling
+    }
+  };
+
+  const getImages = async () => {
+    let pageNumber = Math.floor(Math.random() * 50 + 1);
+
+    const response = await getImageDetailsList({ pageNumber, pageLimit: 20 });
+    setSimilarList(response);
+  }
 
   useEffect(() => {
-    setDimensions(image.width + ' x ' + image.height);
+    fetchImage(imageUrl, false);
+
+    getImages();
   }, [image]);
+
+  useEffect(() => {
+    if (abortController.current) {
+      abortController.current.abort('hello');
+    }
+
+    abortController.current = new AbortController();
+    signal = abortController.current.signal;
+
+    fetchImage(image.download_url, true, signal);
+    setDimensionString(image.width + ' x ' + image.height);
+    setIsPortrait(image.height > image.width);
+  }, [thumbnail, abortController]);
 
   /**
    * handleImageDetailsClick: Function to open image using image url in new tab
@@ -56,17 +107,17 @@ const ImageSideCard = ({
         </div>
       </div>
       <div
-        className={`largeImageDiv ${image.height > image.width * 1.2 ? 'largePadding' : ''}`}
+        className={`largeImageDiv ${isPortrait ? 'largePadding' : ''}`}
         onClick={handleImageOnClick}
       >
         <img
-          src={image.download_url}
+          src={img || thumbnail}
           className='largeImage'
           onMouseOver={() => handleOnImageMouseHover(true)}
           onMouseOut={() => handleOnImageMouseHover(false)}
         />
       </div>
-      <span className={`dimensions ${showDimensions ? '' : 'hide'}`}>{dimensions}</span>
+      <span className={`dimensions ${showDimensions ? '' : 'hide'}`}>{dimensionString}</span>
       <div className='details'>
         <div className='imageDetail' onClick={handleImageOnClick}>
           <span className='heading noTextOverflow'>Author: {image.author}</span>
@@ -78,6 +129,13 @@ const ImageSideCard = ({
         >
           Visit
         </button>
+      </div>
+      <div className='relatedImagesSection'>
+        <span className='title'>Related images</span>
+        <SimilarImageGallery
+          imageList={similarList || []}
+          selectedImage={image}
+        />
       </div>
     </div>
   );
