@@ -23,7 +23,7 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
     } else {
       setIsThisImageSelected(false);
     }
-  });
+  }, [selectedImage]);
 
   /**
    * handleImageDetailsClick: Function to open image using image url in new tab
