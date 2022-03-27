@@ -5,7 +5,7 @@ import './ImageCard.scss';
 
 const ImageCard = ({ image, handleImageClick, selectedImage }) => {
   const [imageUrl, setImageUrl] = useState();
-  const [isThisImageSelected, setIsThisImageSelected] = useState(false);
+  const [isImageSelected, setIsImageSelected] = useState(false);
   const [imageHovered, setImageHovered] = useState(false);
 
   useEffect(() => {
@@ -16,12 +16,12 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
   useEffect(() => {
     if (selectedImage) {
       if (selectedImage.id === image.id) {
-        setIsThisImageSelected(true);
+        setIsImageSelected(true);
       } else {
-        setIsThisImageSelected(false);
+        setIsImageSelected(false);
       }
     } else {
-      setIsThisImageSelected(false);
+      setIsImageSelected(false);
     }
   }, [selectedImage]);
 
@@ -38,7 +38,7 @@ const ImageCard = ({ image, handleImageClick, selectedImage }) => {
 
   return (
     <div
-      className={`imageCard ${isThisImageSelected ? 'selected' : ''}`}
+      className={`imageCard ${isImageSelected ? 'selected' : ''}`}
       style={{
         maxWidth: (image.width * 155) / image.height,
       }}
