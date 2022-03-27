@@ -1,4 +1,5 @@
 import React from "react";
+import './NavButton.scss';
 
 const NavButtons = ({ handleNextClick, handlePreviousClick, pageNumber }) => {
   return (

@@ -16,8 +16,25 @@ const get = (url, params) => {
     });
 }
 
+const getImage = (url, params) => {
+  return axios.get(url, params)
+    .then(response => {
+      if (response && response.status === 200) {
+        return response;
+      } else {
+        return response;
+      }
+    })
+    .catch(error => {
+      // handle error
+      console.log(error);
+      return error;
+    });
+}
+
 const apiServices = {
-  get
+  get,
+  getImage
 }
 
 export default apiServices;

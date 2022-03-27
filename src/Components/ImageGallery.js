@@ -1,18 +1,21 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 import './ImageGallery.scss';
+import ImageSideCard from "./ImageSideCard";
 
-const ImageGallery = ({ imageList }) => {
+const ImageGallery = ({ imageList, handleImageClick, selectedImage }) => {
   return (
     <div className='galleryContainer'>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className={`gallery ${selectedImage ? 'smallWidth' : ''}`}>
         {(imageList || []).map(image => (
-          <ImageCard key={image.id} image={image} />
+          <ImageCard
+            key={image.id}
+            image={image}
+            handleImageClick={handleImageClick}
+          />
         ))}
       </div>
-      <div>
-        Card
-      </div>
+      {selectedImage && <ImageSideCard />}
     </div>
   );
 }

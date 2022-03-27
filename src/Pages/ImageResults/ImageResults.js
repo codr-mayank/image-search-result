@@ -7,6 +7,7 @@ import './ImageResults.scss';
 const ImageResults = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [imageDetailsList, setImageDetailsList] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const getImages = async () => {
     const response = await getImageDetailsList({ pageNumber });
@@ -15,6 +16,7 @@ const ImageResults = () => {
 
   useEffect(() => {
     getImages();
+    setSelectedImage(null);
   }, [pageNumber]);
 
   const handleNextClick = () => {
@@ -25,22 +27,34 @@ const ImageResults = () => {
     setPageNumber(pageNumber - 1);
   };
 
+  const handleImageClick = image => {
+    setSelectedImage(image);
+  }
+
   return (
-    <div className='container'>
-      <h3 className='header'>Image Results</h3>
-      <NavButtons
-        handleNextClick={handleNextClick}
-        handlePreviousClick={handlePreviousClick}
-        pageNumber={pageNumber}
-      />
-      <ImageGallery
-        imageList={imageDetailsList}
-      />
-      {!!(imageDetailsList || []).length && <NavButtons
-        handleNextClick={handleNextClick}
-        handlePreviousClick={handlePreviousClick}
-        pageNumber={pageNumber}
-      />}
+    <div>
+      <div className='topBar'>
+        <h2 className='header'>Image Results</h2>
+        <NavButtons
+          handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
+          pageNumber={pageNumber}
+        />
+      </div>
+      <div className='container'>
+        <ImageGallery
+          imageList={imageDetailsList}
+          handleImageClick={handleImageClick}
+          selectedImage={selectedImage}
+        />
+        {!!(imageDetailsList || []).length && (
+          <NavButtons
+            handleNextClick={handleNextClick}
+            handlePreviousClick={handlePreviousClick}
+            pageNumber={pageNumber}
+          />
+        )}
+      </div>
     </div>
   );
 };

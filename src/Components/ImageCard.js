@@ -22,7 +22,6 @@ const ImageCard = ({ image, handleImageClick }) => {
   return (
     <div
       className='imageCard'
-      onClick={handleImageClick}
       // style={{ maxWidth: (225 > image.width / 10 ? (image.width / 10) + 5 : 225) }}
       // style={{ maxWidth: (image.width / image.height) * 100 }}
       style={{
@@ -31,8 +30,9 @@ const ImageCard = ({ image, handleImageClick }) => {
       }}
     >
       <img
-        className='imageStyle'
         src={img}
+        className='imageStyle'
+        onClick={() => handleImageClick(image)}
       />
       <a className='imageDetailLink' href={image.url} target='_blank'>
         <div className='imageDetail'>
