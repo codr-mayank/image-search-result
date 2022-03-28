@@ -9,9 +9,9 @@ Tried to emulate google search results page and its features.
 Added various optimizations to make the app faster and enhance user eexperience.
 
 Some cool optimizations:
-1. Fetching lower quality images (small size) from backend to display on gallery, to save resources.
-2. When any image is clicked from image gallery grid, showing low quality image for side card, till the time being when original (large size image) image is fetched and set to state to be displayed on page card.
-3. Cancel previous similar calls (if any) when any new api for fetching large size image is called, to get rid of inconsitent data.
+1. Fetching lower quality images (small size) from the backend to display on the gallery, to save resources.
+2. When an image is clicked from the image gallery grid, showing a low-quality image for the side card, till the time being when the original (large size image) image is fetched and set to state to be displayed on the page card.
+3. Canceling previous similar calls (if any) when any new API for fetching large size image is called, to get rid of inconsistent data.
 
 
 ## To setup and run:
