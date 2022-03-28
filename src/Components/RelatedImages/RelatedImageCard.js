@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import apiEndPoints from "../../Constants/apiEndPoints";
 import baseUrl from "../../Constants/baseUrls";
-import './SimilarImageCard.scss';
+import './RelatedImageCard.scss';
 
-const SimilarImageCard = ({ image }) => {
+const RelatedImageCard = ({ image }) => {
   const [imageUrl, setImageUrl] = useState();
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const SimilarImageCard = ({ image }) => {
   );
 };
 
-export default SimilarImageCard;
+export default RelatedImageCard;

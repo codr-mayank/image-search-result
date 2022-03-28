@@ -1,15 +1,15 @@
 import React from "react";
-import SimilarImageCard from "./SimilarImageCard";
-import './SimilarImageGallery.scss';
+import RelatedImageCard from "./RelatedImageCard";
+import './RelatedImageGallery.scss';
 
-const SimilarImageGallery = ({
+const RelatedImageGallery = ({
   imageList
 }) => {
   return (
     <div id='galleryContainer'>
       <div className='gallery'>
         {(imageList || []).map(image => (
-          <SimilarImageCard
+          <RelatedImageCard
             key={image.id}
             image={image}
             similarResults={true}
@@ -20,4 +20,4 @@ const SimilarImageGallery = ({
   );
 };
 
-export default SimilarImageGallery;
+export default RelatedImageGallery;

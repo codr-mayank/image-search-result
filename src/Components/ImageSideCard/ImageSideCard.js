@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Icon } from '@iconify/react';
-import SimilarImageGallery from "../SimilarImageGallery/SimilarImageGallery";
+import RelatedImageGallery from "../RelatedImages/RelatedImageGallery";
 import baseUrl from "../../Constants/baseUrls";
 import apiEndPoints from "../../Constants/apiEndPoints";
 import { getImageDetailsList } from '../../Services/imageResultsApis';
@@ -132,7 +132,7 @@ const ImageSideCard = ({
       </div>
       <div className='relatedImagesSection'>
         <span className='title'>Related images</span>
-        <SimilarImageGallery
+        <RelatedImageGallery
           imageList={similarList || []}
           selectedImage={image}
         />
