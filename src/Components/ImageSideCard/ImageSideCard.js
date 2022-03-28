@@ -42,9 +42,9 @@ const ImageSideCard = ({
   };
 
   const getImages = async () => {
-    let pageNumber = Math.floor(Math.random() * 50 + 1);
+    let pageNumber = Math.floor(Math.random() * 83 + 1);
 
-    const response = await getImageDetailsList({ pageNumber, pageLimit: 20 });
+    const response = await getImageDetailsList({ pageNumber, pageLimit: 12 });
     setSimilarList(response);
   }
 
