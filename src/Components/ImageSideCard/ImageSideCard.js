@@ -25,6 +25,13 @@ const ImageSideCard = ({
   const abortController = useRef();
   let signal;
 
+  /**
+   * fetchImage: Function to fetch image data for large inage from backend using fetch
+   * 
+   * @param {*} url 
+   * @param {*} largeImage 
+   * @param {*} abortSignal 
+   */
   const fetchImage = async (url, largeImage = false, abortSignal = null) => {
     try {
       const res = await fetch(url, { signal: abortSignal });
@@ -41,6 +48,9 @@ const ImageSideCard = ({
     }
   };
 
+  /**
+   * getImages: Function to get Related Images for side card and set it to state
+   */
   const getImages = async () => {
     let pageNumber = Math.floor(Math.random() * 83 + 1);
 
@@ -48,17 +58,30 @@ const ImageSideCard = ({
     setSimilarList(response);
   }
 
+  /**
+   * useEffect to set thumbnal when new image data is available as props
+   * 
+   * Note: Thumbnail is a low quality image which is displayed till the original (large size image) image is fetched from api url
+   */
   useEffect(() => {
     fetchImage(imageUrl, false);
 
     getImages();
   }, [image]);
 
+  /**
+   * useEffect to set original (large size image) image when thumbnail is fetched and set
+   */
   useEffect(() => {
     if (abortController.current) {
       abortController.current.abort('hello');
     }
 
+    /**
+     * abortController and signal to abort previous api calls
+     * (if previous api call(s) still in progress and new api call is triggered)
+     * 
+     */
     abortController.current = new AbortController();
     signal = abortController.current.signal;
 
