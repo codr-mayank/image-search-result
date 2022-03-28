@@ -16,7 +16,8 @@ Some cool optimizations:
 
 ## To setup and run:
 
+```
 npm install
 
 npm start
-
+```
