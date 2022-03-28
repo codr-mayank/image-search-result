@@ -7,15 +7,17 @@ const RelatedImageGallery = ({
 }) => {
   return (
     <div id='galleryContainer'>
-      <div className='gallery'>
-        {(imageList || []).map(image => (
-          <RelatedImageCard
-            key={image.id}
-            image={image}
-            similarResults={true}
-          />
-        ))}
-      </div>
+      {imageList && !!imageList.length && (
+        <div className='gallery'>
+          {(imageList || []).map(image => (
+            <RelatedImageCard
+              key={image.id}
+              image={image}
+              similarResults={true}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
